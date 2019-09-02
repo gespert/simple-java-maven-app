@@ -33,7 +33,7 @@ pipeline {
                 //archiveArtifacts allowEmptyArchive: true, artifacts: '**/dependency-check-report.xml', onlyIfSuccessful: true
             //}
             steps {
-                sh 'mvn org.owasp:dependency-check-maven:check -Dformat=XML -DdataDirectory=/usr/share/nvd'
+                sh 'mvn org.owasp:dependency-check-maven:check -Dformat=HTML -DdataDirectory=/usr/share/nvd'
                 step([$class: 'DependencyCheckPublisher', unstableTotalAll: '0'])
             }
         }
