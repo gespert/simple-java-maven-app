@@ -15,16 +15,16 @@ pipeline {
             }
         }
 
-        //stage("Static Analysis") {
-          //  steps {
-          //      script {
-          //      scannerHome = tool 'SonarQube'
-          //      }
-          //      withSonarQubeEnv('SonarQube') {
-          //          sh "${scannerHome}/bin/sonar-scanner"
-          //      }
-          //  }
-        //}
+        stage("Static Analysis") {
+            steps {
+                script {
+                scannerHome = tool 'SonarQube'
+                }
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
 
         stage('Dependency Check') {
             //steps {
