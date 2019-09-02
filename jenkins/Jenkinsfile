@@ -26,15 +26,14 @@ pipeline {
           //  }
         //}
 
-        stage("Dependency Check") {
+        stage('Dependency Check') {
             //steps {
                 //dependencyCheck datadir: 'dependency-check-data', isFailOnErrorDisabled: true, hintsFile: '', includeCsvReports: false, includeHtmlReports: false, includeJsonReports: false, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
                 //dependencyCheckPublisher canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                 //archiveArtifacts allowEmptyArchive: true, artifacts: '**/dependency-check-report.xml', onlyIfSuccessful: true
             //}
             steps {
-                sh 'mvn org.owasp:dependency-check-maven:check
-                    -Dformat=XML -DdataDirectory=/usr/share/nvd -DautoUpdate=false'
+                sh 'mvn org.owasp:dependency-check-maven:check -Dformat=XML -DdataDirectory=/usr/share/nvd -DautoUpdate=false'
                 step([$class: 'DependencyCheckPublisher', unstableTotalAll: '0'])
             }
         }
