@@ -34,7 +34,7 @@ pipeline {
             //}
             steps {
                 sh 'mvn org.owasp:dependency-check-maven:check -DdataDirectory=/usr/share/nvd'
-                step([$class: 'DependencyCheckPublisher', unstableTotalAll: '0'])
+                step([$class: 'DependencyCheckPublisher', unstableTotalAll: '5'])
             }
         }
 
